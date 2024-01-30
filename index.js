@@ -15,7 +15,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = "asdfe45we45w345wegw345werjktjwertkj";
 
 
-app.use(cors({ credentials: true, origin: "https://blog-xi-livid-49.vercel.app" }));
+app.use(cors({ credentials: true, origin: "https://blogabhra.netlify.app" }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
