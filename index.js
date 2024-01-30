@@ -162,5 +162,6 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc);
 });
 
-app.listen(4000 || process.env.PORT);
+const port=4000 || process.env.PORT;
+app.listen(port,()=>{console.log(`Running on ${port}`)});
 //
