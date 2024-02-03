@@ -18,6 +18,7 @@ const secret = "asdfe45we45w345wegw345werjktjwertkj";
 app.use(cors({ credentials: true, origin: "https://blogabhra.netlify.app" }));
 app.use(express.json());
 app.use(cookieParser());
+
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 mongoose.connect(
@@ -42,6 +43,7 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const userDoc = await User.findOne({ username });
   const passOk = bcrypt.compareSync(password, userDoc.password);
+  res.cookie("token", token, { domain: 'https://blogabhra.netlify.app', secure: true });
   if (passOk) {
     // logged in
     jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
@@ -57,6 +59,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+  res.cookie("token", token, { domain: 'https://blogabhra.netlify.app', secure: true });
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, (err, info) => {
     // if (err) throw err;
