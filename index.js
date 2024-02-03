@@ -105,8 +105,8 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
     // if (err) throw err;
     const { id, title, summary, content } = req.body;
     const postDoc = await Post.findById(id);
-    console.log(info)
-    console.log(postDoc)
+    // console.log(info)
+    // console.log(postDoc)
     const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
     if (!isAuthor) {
       return res.status(400).json("you are not the author");
