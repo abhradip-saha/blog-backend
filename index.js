@@ -13,9 +13,9 @@ const fs = require("fs");
 
 const salt = bcrypt.genSaltSync(10);
 const secret = "asdfe45we45w345wegw345werjktjwertkj";
-
-
-app.use(cors({ credentials: true, origin: "https://blogabhra.netlify.app" }));
+// https://blogabhra.onrender.com
+// https://blogabhra.netlify.app
+app.use(cors({ credentials: true, origin: "https://blogabhra.onrender.com" }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
