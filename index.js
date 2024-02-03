@@ -102,7 +102,7 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
     newPath = path + "." + ext;
     fs.renameSync(path, newPath);
   }
-
+res.cookie("token", token, { domain: 'https://blogabhra.netlify.app', secure: true });
   const { token } = req.cookies;
   console.log(token)
   jwt.verify(token, secret, {}, async (err, info) => {
