@@ -174,7 +174,13 @@ app.get("/post/:id", async (req, res) => {
   const postDoc = await Post.findById(id).populate("author", ["username"]);
   res.json(postDoc);
 });
+const port = process.env.PORT || 4000;
 
-const port=4000 || process.env.PORT;
-app.listen(port,()=>{console.log(`Running on ${port}`)});
-//
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
+app.listen(port, () => {
+  console.log(`Running on ${port}`);
+});
+
